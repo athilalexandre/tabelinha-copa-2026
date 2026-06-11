@@ -129,14 +129,14 @@ export function BookletApp() {
 
   return (
     <main className={`appShell ${isOpen ? "bookletOpen" : "bookletClosed"}`}>
-      <section className="introBand" aria-label="Tabelinha Copa 2026">
-        <div className="introCopy">
-          <p className="kicker">Copa 2026 · Guia interativo</p>
-          <h1>Tabelinha Copa 2026</h1>
-          <p>Grupos, jogos, classificação e mata-mata em uma experiência compacta.</p>
-        </div>
+      {!isOpen ? (
+        <section className="introBand" aria-label="Tabelinha Copa 2026">
+          <div className="introCopy">
+            <p className="kicker">Copa 2026 · Guia interativo</p>
+            <h1>Tabelinha Copa 2026</h1>
+            <p>Grupos, jogos, classificação e mata-mata em uma experiência compacta.</p>
+          </div>
 
-        {!isOpen ? (
           <BookletCover
             isOpen={isOpen}
             onOpen={() => {
@@ -145,10 +145,8 @@ export function BookletApp() {
             }}
             onClose={() => setIsOpen(false)}
           />
-        ) : null}
-      </section>
-
-      {isOpen ? (
+        </section>
+      ) : (
         <div className="bookletWorkspace">
           <NavigationControls
             isOpen={isOpen}
@@ -169,19 +167,19 @@ export function BookletApp() {
             onFocusPage={setFocusedIndex}
             onUpdateScore={updateScore}
           />
-        </div>
-      ) : null}
 
-      {isOpen ? (
-        <aside className="sourceStrip" aria-label="Status dos dados">
-          <strong>Dados da Copa:</strong> grupos preenchidos; placares e horários seguem editáveis.
-          <span>{dataVerificationNote}</span>
-          <span>
-            Formato base: {tournamentFormat.teams} seleções, {tournamentFormat.groups} grupos de{" "}
-            {tournamentFormat.teamsPerGroup}, {tournamentFormat.groupAdvancement}.
-          </span>
-        </aside>
-      ) : null}
+          <aside className="sourceStrip" aria-label="Status dos dados">
+            <div className="sourceGrid">
+              <strong>Dados da Copa:</strong>
+              <span>Grupos preenchidos conforme regulamento. Placares e horários (BRT) editáveis.</span>
+            </div>
+            <div className="formatGrid">
+              <span>Formato: {tournamentFormat.teams} seleções, {tournamentFormat.groups} grupos de {tournamentFormat.teamsPerGroup} times, {tournamentFormat.groupAdvancement}.</span>
+              <small className="fineNote">{dataVerificationNote}</small>
+            </div>
+          </aside>
+        </div>
+      )}
     </main>
   );
 }

@@ -1,4 +1,5 @@
 import type { Group, Standing } from "@/data/worldCup2026";
+import { Flag } from "@/components/Flag";
 
 type StandingsTableProps = {
   group: Group;
@@ -26,25 +27,26 @@ export function StandingsTable({ group, standings = group.standings }: Standings
           </tr>
         </thead>
         <tbody>
-          {standings.map((standing, index) => (
-            <tr key={standing.teamId} className={index < 2 ? "directZone" : index === 2 ? "thirdZone" : undefined}>
-              <th scope="row">
-                <span className="rankBadge">{index + 1}</span>
-                <span className="teamFlag" aria-hidden="true">
-                  {teamById.get(standing.teamId)?.flag}
-                </span>
-                {teamById.get(standing.teamId)?.name}
-              </th>
-              <td>{standing.pts}</td>
-              <td>{standing.p}</td>
-              <td>{standing.w}</td>
-              <td>{standing.d}</td>
-              <td>{standing.l}</td>
-              <td>{standing.gf}</td>
-              <td>{standing.ga}</td>
-              <td>{standing.gd}</td>
-            </tr>
-          ))}
+          {standings.map((standing, index) => {
+            const team = teamById.get(standing.teamId);
+            return (
+              <tr key={standing.teamId} className={index < 2 ? "directZone" : index === 2 ? "thirdZone" : undefined}>
+                <th scope="row" className="teamRowHeader">
+                  <span className="rankBadge">{index + 1}</span>
+                  {team && <Flag name={team.name} />}
+                  <span className="teamNameLabel">{team?.name}</span>
+                </th>
+                <td className="statPts">{standing.pts}</td>
+                <td>{standing.p}</td>
+                <td>{standing.w}</td>
+                <td>{standing.d}</td>
+                <td>{standing.l}</td>
+                <td>{standing.gf}</td>
+                <td>{standing.ga}</td>
+                <td className="statGd">{standing.gd}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

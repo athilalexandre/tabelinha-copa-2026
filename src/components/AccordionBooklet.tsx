@@ -79,21 +79,44 @@ export function AccordionBooklet({
     if (page.kind === "cover") {
       return (
         <div className="insideCover">
-          <span>Fan-made</span>
-          <h2>Tabelinha Copa 2026</h2>
-          <p>Feita para preencher aos poucos, como as tabelinhas de bolso.</p>
-          <dl>
-            <div>
-              <dt>Grupos</dt>
-              <dd>12</dd>
+          <span className="badgeFanMade">Guia Não Oficial</span>
+          <h2 className="insideTitle">Tabelinha Copa 2026</h2>
+          <p className="insideDesc">Feita para preencher aos poucos e simular todo o chaveamento, como as tabelinhas de bolso de antigamente.</p>
+          <dl className="statsGrid">
+            <div className="statCard">
+              <svg className="statIcon groups" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect width="7" height="7" x="3" y="3" rx="1"/>
+                <rect width="7" height="7" x="14" y="3" rx="1"/>
+                <rect width="7" height="7" x="14" y="14" rx="1"/>
+                <rect width="7" height="7" x="3" y="14" rx="1"/>
+              </svg>
+              <div className="statInfo">
+                <dt>Grupos</dt>
+                <dd>12</dd>
+              </div>
             </div>
-            <div>
-              <dt>Seleções</dt>
-              <dd>48</dd>
+            <div className="statCard">
+              <svg className="statIcon teams" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+                <line x1="4" x2="4" y1="22" y2="15"/>
+              </svg>
+              <div className="statInfo">
+                <dt>Seleções</dt>
+                <dd>48</dd>
+              </div>
             </div>
-            <div>
-              <dt>Mata-mata</dt>
-              <dd>32</dd>
+            <div className="statCard">
+              <svg className="statIcon knockout" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                <path d="M4 22h16"/>
+                <path d="M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34"/>
+                <path d="M12 2a6 6 0 0 1 6 6c0 3.24-2.5 5.5-5.5 5.5h-1C8.5 13.5 6 11.24 6 8a6 6 0 0 1 6-6Z"/>
+              </svg>
+              <div className="statInfo">
+                <dt>Mata-mata</dt>
+                <dd>32</dd>
+              </div>
             </div>
           </dl>
         </div>

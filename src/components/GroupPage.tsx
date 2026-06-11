@@ -3,6 +3,7 @@ import { StandingsTable } from "@/components/StandingsTable";
 import type { ScoreMap } from "@/components/BookletApp";
 import type { Group } from "@/data/worldCup2026";
 import { calculateGroupStandings } from "@/lib/tournament";
+import { Flag } from "@/components/Flag";
 
 type GroupPageProps = {
   group: Group;
@@ -23,12 +24,12 @@ export function GroupPage({ group, scores, onUpdateScore }: GroupPageProps) {
       <ul className="teamList" aria-label={`Times do ${group.name}`}>
         {group.teams.map((team) => (
           <li key={team.id}>
-            <span>{team.groupPosition}</span>
-            <strong>
-              <b aria-hidden="true">{team.flag}</b>
-              {team.name}
-            </strong>
-            {team.qualificationNote ? <small>{team.qualificationNote}</small> : null}
+            <span className="posBadge">{team.groupPosition}</span>
+            <div className="teamInfo">
+              <Flag name={team.name} />
+              <strong>{team.name}</strong>
+            </div>
+            {team.qualificationNote ? <small className="qualNote">{team.qualificationNote}</small> : null}
           </li>
         ))}
       </ul>

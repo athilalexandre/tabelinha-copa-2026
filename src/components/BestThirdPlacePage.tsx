@@ -1,6 +1,7 @@
 import type { ScoreMap } from "@/components/BookletApp";
 import type { Group } from "@/data/worldCup2026";
 import { getThirdPlaceRanking, isGroupComplete } from "@/lib/tournament";
+import { Flag } from "@/components/Flag";
 
 type BestThirdPlacePageProps = {
   groups: Group[];
@@ -15,7 +16,7 @@ export function BestThirdPlacePage({ groups, scores }: BestThirdPlacePageProps) 
     <div className="bestThirdPage">
       <header className="pageHeader">
         <span>3</span>
-        <h2>Melhores 3º</h2>
+        <h2>Melhores 3º Colocados</h2>
       </header>
 
       <div className="tableWrap">
@@ -33,17 +34,17 @@ export function BestThirdPlacePage({ groups, scores }: BestThirdPlacePageProps) 
           <tbody>
             {ranking.map((team, index) => (
               <tr key={team.id} className={index < 8 && allGroupsComplete ? "directZone" : undefined}>
-                <th scope="row">
+                <th scope="row" className="teamRowHeader">
                   <span className="rankBadge">{index + 1}</span>
-                  <span className="teamFlag" aria-hidden="true">
-                    {team.flag}
-                  </span>
-                  {team.name}
-                  <small className="groupMarker">Grupo {team.groupId}</small>
+                  <Flag name={team.name} />
+                  <div className="teamInfoWrapper">
+                    <span className="teamNameLabel">{team.name}</span>
+                    <small className="groupMarker">Grupo {team.groupId}</small>
+                  </div>
                 </th>
-                <td>{team.standing?.pts ?? 0}</td>
+                <td className="statPts">{team.standing?.pts ?? 0}</td>
                 <td>{team.standing?.p ?? 0}</td>
-                <td>{team.standing?.gd ?? 0}</td>
+                <td className="statGd">{team.standing?.gd ?? 0}</td>
                 <td>{team.standing?.gf ?? 0}</td>
               </tr>
             ))}
@@ -53,8 +54,8 @@ export function BestThirdPlacePage({ groups, scores }: BestThirdPlacePageProps) 
 
       <p className="finePrint">
         {allGroupsComplete
-          ? "Os oito primeiros avançam para a Fase de 32."
-          : "Complete todos os placares da fase de grupos para travar os oito melhores 3º."}
+          ? "Os 8 melhores terceiros colocados avançam para a Fase de 32."
+          : "Complete todos os placares da fase de grupos para travar a classificação final dos terceiros colocados."}
       </p>
     </div>
   );
