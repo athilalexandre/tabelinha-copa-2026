@@ -65,6 +65,7 @@ npm run start
 - `src/components/BestThirdPlacePage.tsx`: melhores 3º
 - `src/components/KnockoutRoundPage.tsx`: rodadas do mata-mata
 - `src/data/worldCup2026.ts`: dados editáveis da Copa
+- `src/lib/tournament.ts`: cálculo de classificação e avanço no mata-mata
 
 ## Persistência Local
 
@@ -90,5 +91,5 @@ Nenhuma configuração especial da Vercel é necessária neste MVP.
 ## Limitações Conhecidas
 
 - Resultados devem ser revisados contra a página oficial da FIFA.
-- A tabela de classificação ainda não recalcula automaticamente a partir dos placares digitados.
+- Mata-mata empatado ainda não resolve pênaltis automaticamente.
 - Os caminhos do mata-mata devem ser revisados se a FIFA alterar a estrutura oficial.
