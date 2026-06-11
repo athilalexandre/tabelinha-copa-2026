@@ -1,0 +1,1 @@
+# tabelinha-copa-2026
