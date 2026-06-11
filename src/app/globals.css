@@ -1,17 +1,30 @@
 :root {
-  --bg: #07130f;
-  --bg-2: #0d241a;
-  --ink: #102018;
-  --muted: #65736b;
-  --surface: #f7fbf5;
-  --surface-2: #ecf4ee;
-  --line: rgba(16, 32, 24, 0.12);
-  --green: #00a85a;
-  --green-dark: #087242;
-  --blue: #1368d8;
-  --yellow: #ffd166;
-  --red: #e93946;
-  --shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
+  --font-inter: var(--font-inter, sans-serif);
+  --font-outfit: var(--font-outfit, sans-serif);
+
+  /* Premium HSL Color Palette */
+  --bg-raw: 156, 45%, 4%;
+  --bg: hsl(var(--bg-raw));
+  --bg-2: hsl(156, 40%, 8%);
+  --ink: hsl(156, 30%, 9%);
+  --muted: hsl(156, 12%, 40%);
+  --surface: #ffffff;
+  --surface-2: #f3f7f5;
+  --line: rgba(15, 29, 23, 0.08);
+  
+  /* Primary accents */
+  --green: hsl(156, 72%, 40%);
+  --green-dark: hsl(156, 75%, 20%);
+  --blue: hsl(217, 91%, 56%);
+  --yellow: hsl(38, 92%, 50%);
+  --red: hsl(350, 80%, 55%);
+  
+  --shadow: 
+    0 15px 35px -5px rgba(0, 0, 0, 0.25), 
+    0 5px 15px -5px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.4),
+    0 0 50px rgba(16, 185, 129, 0.05);
 }
 
 * {
@@ -24,16 +37,20 @@ html {
 }
 
 body {
-  min-height: 100%;
+  min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
-  color: var(--surface);
-  font-family: Arial, Helvetica, sans-serif;
-  background:
-    radial-gradient(circle at 16% 14%, rgba(0, 168, 90, 0.28), transparent 28%),
-    radial-gradient(circle at 86% 18%, rgba(19, 104, 216, 0.24), transparent 30%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.055) 0 1px, transparent 1px 48px),
-    linear-gradient(90deg, var(--bg), var(--bg-2));
+  color: var(--surface-2);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(16, 185, 129, 0.14) 0%, transparent 45%),
+    radial-gradient(circle at 88% 12%, rgba(59, 130, 246, 0.11) 0%, transparent 40%),
+    radial-gradient(circle at 50% 85%, rgba(245, 158, 11, 0.04) 0%, transparent 55%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 button,
@@ -43,6 +60,8 @@ input {
 
 button {
   cursor: pointer;
+  border: none;
+  background: none;
 }
 
 button:focus-visible,
@@ -52,151 +71,182 @@ input:focus-visible {
 }
 
 .appShell {
-  width: min(100%, 1220px);
+  width: min(100%, 1200px);
   min-height: 100vh;
   margin: 0 auto;
-  padding: 28px;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
+/* ----------------------------------------------------
+   Intro Banner
+   ---------------------------------------------------- */
 .introBand {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
-  gap: 36px;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 1fr);
+  gap: 48px;
   align-items: center;
-  min-height: 32vh;
+  min-height: 38vh;
+  padding-top: 16px;
 }
 
 .introCopy {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .kicker {
-  margin: 0 0 12px;
-  color: var(--yellow) !important;
-  font-size: 0.78rem !important;
-  font-weight: 900;
-  letter-spacing: 0.08em;
+  margin: 0;
+  color: var(--yellow);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  font-family: var(--font-outfit);
 }
 
 .introCopy h1 {
-  max-width: 740px;
+  max-width: 800px;
   margin: 0;
-  font-size: clamp(3rem, 8vw, 7.4rem);
-  line-height: 0.9;
-  letter-spacing: 0;
+  font-size: clamp(2.5rem, 6vw, 4.8rem);
+  line-height: 1.05;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  font-family: var(--font-outfit);
+  background: linear-gradient(135deg, #ffffff 40%, hsl(156, 50%, 80%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .introCopy p {
-  max-width: 590px;
-  margin: 18px 0 0;
-  color: rgba(247, 251, 245, 0.78);
-  font-size: clamp(1.05rem, 2vw, 1.38rem);
-  line-height: 1.45;
+  max-width: 600px;
+  margin: 4px 0 0 0;
+  color: hsl(156, 16%, 80%);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  line-height: 1.5;
 }
 
 .bookletClosed {
   display: grid;
   place-items: center;
+  justify-content: center;
 }
 
 .bookletClosed .introBand {
-  grid-template-columns: minmax(280px, 560px);
+  grid-template-columns: minmax(280px, 580px);
   justify-items: center;
-  width: min(100%, 620px);
-  min-height: calc(100vh - 56px);
+  width: min(100%, 640px);
+  min-height: calc(100vh - 80px);
   text-align: center;
 }
 
 .bookletClosed .introCopy h1 {
-  font-size: clamp(3.2rem, 12vw, 6.4rem);
+  font-size: clamp(2.8rem, 10vw, 5.2rem);
+  line-height: 1.0;
 }
 
 .bookletClosed .introCopy p {
   margin-inline: auto;
 }
 
+/* ----------------------------------------------------
+   Album Cover Card
+   ---------------------------------------------------- */
 .coverCard {
   position: relative;
-  width: min(100%, 390px);
+  width: min(100%, 400px);
   justify-self: end;
-  filter: drop-shadow(0 32px 44px rgba(0, 0, 0, 0.34));
 }
 
 .bookletClosed .coverCard {
   justify-self: center;
-  margin-top: 12px;
+  margin-top: 24px;
 }
 
 .coverGlow {
   position: absolute;
-  inset: 11% -8% -8%;
+  inset: 5% -5% -5%;
   border-radius: 32px;
-  background: linear-gradient(135deg, rgba(0, 168, 90, 0.42), rgba(19, 104, 216, 0.24));
-  filter: blur(22px);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.45), rgba(59, 130, 246, 0.25));
+  filter: blur(28px);
+  opacity: 0.85;
 }
 
 .coverFace {
   position: relative;
-  display: grid;
-  gap: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
   min-height: 480px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 30px;
-  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  padding: 36px;
   overflow: hidden;
   background:
-    linear-gradient(160deg, rgba(0, 168, 90, 0.95), rgba(7, 19, 15, 0.98) 54%),
-    radial-gradient(circle at 85% 18%, rgba(255, 209, 102, 0.28), transparent 26%);
+    linear-gradient(160deg, rgba(6, 95, 70, 0.92), rgba(4, 13, 10, 0.98) 75%),
+    radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.18), transparent 30%);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
 }
 
 .coverFace::before {
   content: "";
   position: absolute;
   inset: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
   pointer-events: none;
 }
 
 .coverFace::after {
   content: "";
   position: absolute;
-  right: -36px;
-  bottom: -36px;
-  width: 190px;
-  height: 190px;
-  border: 22px solid rgba(255, 255, 255, 0.09);
+  right: -40px;
+  bottom: -40px;
+  width: 200px;
+  height: 200px;
+  border: 24px solid rgba(255, 255, 255, 0.05);
   border-radius: 50%;
+  pointer-events: none;
 }
 
 .coverYear {
   position: relative;
   width: fit-content;
   border-radius: 999px;
-  padding: 7px 12px;
+  padding: 6px 14px;
   background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-  font-size: 0.76rem;
+  color: #ffffff;
+  font-size: 0.72rem;
   font-weight: 900;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  font-family: var(--font-outfit);
 }
 
 .coverFace h2 {
   position: relative;
   z-index: 1;
-  margin: 24px 0 0;
+  margin: 16px 0 0;
   color: #fff;
-  font-size: clamp(2.4rem, 10vw, 4.1rem);
-  line-height: 0.9;
+  font-size: clamp(2.2rem, 8vw, 3.6rem);
+  line-height: 1.05;
+  font-weight: 900;
+  font-family: var(--font-outfit);
 }
 
 .coverFace p {
   position: relative;
   z-index: 1;
   margin: 0;
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 1rem;
   line-height: 1.5;
 }
@@ -206,29 +256,34 @@ input:focus-visible {
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 12px;
   margin: 0;
 }
 
 .coverStats div {
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.08);
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(4px);
+  text-align: center;
 }
 
 .coverStats dt {
-  color: rgba(255, 255, 255, 0.64);
-  font-size: 0.68rem;
-  font-weight: 900;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
+  font-family: var(--font-outfit);
 }
 
 .coverStats dd {
-  margin: 3px 0 0;
-  color: #fff;
-  font-size: 1.35rem;
-  font-weight: 900;
+  margin: 4px 0 0;
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 800;
+  font-family: var(--font-outfit);
 }
 
 .primaryButton {
@@ -237,14 +292,31 @@ input:focus-visible {
   min-height: 52px;
   border: 0;
   border-radius: 16px;
-  background: var(--yellow);
-  color: #111d16;
-  font-weight: 900;
-  box-shadow: 0 14px 28px rgba(255, 209, 102, 0.22);
+  background: linear-gradient(135deg, var(--yellow), hsl(38, 92%, 42%));
+  color: hsl(156, 45%, 4%);
+  font-family: var(--font-outfit);
+  font-weight: 800;
+  font-size: 1.05rem;
+  box-shadow: 0 12px 24px -6px rgba(245, 158, 11, 0.35);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.01em;
 }
 
+.primaryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px -4px rgba(245, 158, 11, 0.45);
+  filter: brightness(1.08);
+}
+
+.primaryButton:active {
+  transform: translateY(1px);
+}
+
+/* ----------------------------------------------------
+   Booklet Layout (Open Mode)
+   ---------------------------------------------------- */
 .bookletOpen {
-  padding-top: 22px;
+  padding-top: 16px;
 }
 
 .bookletOpen .introBand {
@@ -259,7 +331,7 @@ input:focus-visible {
 }
 
 .bookletOpen .introCopy h1 {
-  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-size: clamp(2rem, 5vw, 3.6rem);
 }
 
 .bookletOpen .introCopy p:not(.kicker) {
@@ -268,81 +340,109 @@ input:focus-visible {
 }
 
 .bookletWorkspace {
-  width: min(100%, 1040px);
-  margin: 20px auto 0;
+  width: min(100%, 1080px);
+  margin: 24px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
+/* ----------------------------------------------------
+   Navigation Bar
+   ---------------------------------------------------- */
 .bookletNav {
   display: grid;
-  grid-template-columns: 44px minmax(0, 1fr) 44px auto;
-  gap: 10px;
+  grid-template-columns: 80px minmax(0, 1fr) 48px 48px;
+  gap: 12px;
   align-items: center;
-  width: min(100%, 680px);
-  margin: 0 auto 14px;
-  border: 1px solid rgba(255, 255, 255, 0.13);
+  width: min(100%, 720px);
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 999px;
-  padding: 8px;
-  background: rgba(247, 251, 245, 0.1);
-  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.18);
-  backdrop-filter: blur(14px);
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .bookletNav button {
-  min-height: 42px;
-  border: 0;
+  min-height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
   color: #fff;
-  font-weight: 900;
-  transition:
-    transform 160ms ease,
-    background 160ms ease;
+  font-weight: 800;
+  font-family: var(--font-outfit);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
 }
 
 .bookletNav button:hover {
-  transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
+/* Close/Open button (Fechar) */
 .bookletNav button:first-child {
-  grid-column: 4;
-  padding-inline: 16px;
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--ink);
-}
-
-.bookletNav button:nth-child(2) {
   grid-column: 1;
+  padding-inline: 18px;
+  background: #ffffff;
+  color: var(--ink);
+  border-color: #ffffff;
 }
 
-.bookletNav button:nth-child(4) {
+.bookletNav button:first-child:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Prev Page Button */
+.bookletNav button:nth-child(2) {
   grid-column: 3;
+}
+
+/* Next Page Button */
+.bookletNav button:nth-child(4) {
+  grid-column: 4;
 }
 
 .pageCounter {
   grid-column: 2;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 12px;
   min-width: 0;
   color: #fff;
-  font-weight: 900;
+  font-weight: 800;
+  padding-inline: 8px;
 }
 
 .pageCounter span {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-family: var(--font-outfit);
+  font-size: 1.1rem;
 }
 
 .pageCounter small {
   flex: 0 0 auto;
-  color: rgba(255, 255, 255, 0.62);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
 }
 
+/* ----------------------------------------------------
+   Booklet Stage / Page Wrapper
+   ---------------------------------------------------- */
 .bookletStage {
   margin: 0;
-  padding: 8px 0 30px;
+  padding: 8px 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .bookletViewport {
@@ -365,35 +465,34 @@ input:focus-visible {
 
 .bookletPage {
   position: relative;
-  width: min(100%, 900px);
-  min-height: 650px;
+  width: min(100%, 940px);
+  min-height: 580px; /* High stability for desktop */
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 28px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(237, 246, 238, 0.98)),
-    var(--surface);
+  border: 1px solid rgba(16, 185, 129, 0.08);
+  border-radius: 24px;
+  background: 
+    linear-gradient(135deg, #ffffff, #f7faf8);
   color: var(--ink);
-  box-shadow: var(--shadow);
-  animation: pageIn 260ms ease both;
+  box-shadow: var(--shadow-lg);
+  animation: pageIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 .bookletPage::before {
   content: "";
   position: absolute;
   inset: 0;
-  height: 9px;
+  height: 8px;
   background: linear-gradient(90deg, var(--green), var(--blue), var(--yellow), var(--red));
 }
 
 .bookletPage::after {
   content: "";
   position: absolute;
-  right: -70px;
-  top: -70px;
-  width: 210px;
-  height: 210px;
-  border: 30px solid rgba(0, 168, 90, 0.08);
+  right: -60px;
+  top: -60px;
+  width: 180px;
+  height: 180px;
+  border: 24px solid rgba(16, 185, 129, 0.05);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -404,60 +503,69 @@ input:focus-visible {
   right: 24px;
   z-index: 2;
   border-radius: 999px;
-  padding: 7px 12px;
-  background: #102018;
+  padding: 6px 14px;
+  background: var(--ink);
   color: #fff;
-  font-size: 0.72rem;
-  font-weight: 900;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
+  font-family: var(--font-outfit);
 }
 
 .pageInner {
-  height: 100%;
-  max-height: none;
-  overflow: visible;
-  padding: 38px;
+  padding: 40px;
 }
 
+/* ----------------------------------------------------
+   Inside Cover Page
+   ---------------------------------------------------- */
 .insideCover {
-  display: grid;
-  align-content: center;
-  min-height: 570px;
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 480px;
+  gap: 28px;
   text-align: left;
 }
 
 .insideCover > span {
   width: fit-content;
   border-radius: 999px;
-  padding: 7px 12px;
-  background: rgba(0, 168, 90, 0.12);
+  padding: 6px 14px;
+  background: rgba(16, 185, 129, 0.08);
   color: var(--green-dark);
-  font-size: 0.76rem;
-  font-weight: 900;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
+  font-family: var(--font-outfit);
 }
 
 .insideCover h2 {
-  max-width: 650px;
+  max-width: 700px;
   margin: 0;
-  font-size: clamp(3rem, 8vw, 6rem);
-  line-height: 0.88;
+  font-size: clamp(2.2rem, 6vw, 4.2rem);
+  line-height: 1.05;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  font-family: var(--font-outfit);
+  color: var(--ink);
 }
 
 .insideCover p {
-  max-width: 520px;
+  max-width: 540px;
   margin: 0;
   color: var(--muted);
-  font-size: 1.08rem;
-  line-height: 1.55;
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
 .insideCover dl {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  max-width: 560px;
+  gap: 16px;
+  max-width: 600px;
   margin: 12px 0 0;
 }
 
@@ -467,74 +575,103 @@ input:focus-visible {
 .bracketMatch {
   border: 1px solid var(--line);
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.66);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 12px rgba(15, 29, 23, 0.02);
+  backdrop-filter: blur(6px);
 }
 
 .insideCover dl div {
-  padding: 16px;
+  padding: 18px 16px;
+  text-align: center;
 }
 
 .insideCover dt {
   color: var(--muted);
-  font-size: 0.72rem;
-  font-weight: 900;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
+  font-family: var(--font-outfit);
 }
 
 .insideCover dd {
   margin: 4px 0 0;
-  font-size: 1.65rem;
+  font-size: 1.8rem;
   font-weight: 900;
+  font-family: var(--font-outfit);
+  color: var(--green-dark);
 }
 
+/* ----------------------------------------------------
+   General Page Header (Inside pages)
+   ---------------------------------------------------- */
 .pageHeader {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 18px;
-  padding-right: 110px;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-right: 120px;
 }
 
 .pageHeader span {
   display: grid;
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   place-items: center;
-  border-radius: 14px;
-  background: var(--green);
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
   color: #fff;
-  font-weight: 900;
+  font-weight: 800;
+  font-family: var(--font-outfit);
+  font-size: 1.1rem;
+  box-shadow: 0 6px 12px rgba(16, 185, 129, 0.2);
 }
 
 .pageHeader h2 {
   margin: 0;
-  font-size: clamp(2rem, 5vw, 3rem);
-  line-height: 1;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  line-height: 1.1;
+  font-weight: 800;
+  font-family: var(--font-outfit);
+  color: var(--ink);
 }
 
+/* ----------------------------------------------------
+   Team List Grid
+   ---------------------------------------------------- */
 .teamList {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-  margin: 0 0 20px;
+  gap: 12px;
+  margin: 0 0 28px;
   padding: 0;
   list-style: none;
 }
 
 .teamList li {
-  display: grid;
-  gap: 6px;
-  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 16px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.teamList li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(15, 29, 23, 0.05);
+  border-color: rgba(16, 185, 129, 0.2);
 }
 
 .teamList span {
   width: fit-content;
   border-radius: 999px;
-  padding: 4px 8px;
-  background: rgba(19, 104, 216, 0.1);
+  padding: 4px 10px;
+  background: rgba(59, 130, 246, 0.08);
   color: var(--blue);
-  font-size: 0.72rem;
-  font-weight: 900;
+  font-size: 0.68rem;
+  font-weight: 850;
+  font-family: var(--font-outfit);
 }
 
 .teamList strong {
@@ -542,102 +679,111 @@ input:focus-visible {
   gap: 8px;
   align-items: center;
   min-width: 0;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  color: var(--ink);
 }
 
 .teamList strong b,
 .scoreLine b,
 .teamSlot b,
 .teamFlag {
-  font-size: 1.15em;
+  font-size: 1.25rem;
   line-height: 1;
 }
 
 .teamList small {
   color: var(--muted);
-  font-size: 0.68rem;
-  font-weight: 900;
+  font-size: 0.65rem;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
+/* ----------------------------------------------------
+   Tables Styling
+   ---------------------------------------------------- */
 .tableWrap {
-  overflow-x: visible;
-  margin: 0 0 20px;
+  overflow-x: auto;
+  margin: 0 0 28px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 12px rgba(15, 29, 23, 0.02);
 }
 
 table {
   width: 100%;
-  min-width: 0;
-  table-layout: fixed;
   border-collapse: collapse;
-  border-radius: 18px;
-  overflow: hidden;
-  background: #fff;
-  font-size: 0.86rem;
+  background: #ffffff;
+  font-size: 0.9rem;
 }
 
 caption {
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   color: var(--muted);
-  font-weight: 900;
+  font-weight: 800;
   text-align: left;
   text-transform: uppercase;
+  font-family: var(--font-outfit);
+  letter-spacing: 0.05em;
+  font-size: 0.8rem;
+  padding-left: 4px;
 }
 
 th,
 td {
-  border-bottom: 1px solid rgba(16, 32, 24, 0.08);
-  padding: 10px 9px;
+  border-bottom: 1px solid rgba(15, 29, 23, 0.06);
+  padding: 12px 10px;
   text-align: center;
-  overflow-wrap: anywhere;
 }
 
 th:first-child,
 td:first-child {
   text-align: left;
+  padding-left: 16px;
+}
+
+thead th {
+  background: #0f1d17;
+  color: #ffffff;
+  font-family: var(--font-outfit);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
 }
 
 .standingsTable th:first-child {
-  width: 34%;
+  width: 36%;
 }
 
 .standingsTable th:not(:first-child),
 .standingsTable td:not(:first-child) {
-  width: 8.25%;
+  width: 8%;
 }
 
+/* Premium Zone highlights using elegant left border and soft glows */
 .standingsTable tbody tr.directZone {
-  background: rgba(0, 168, 90, 0.075);
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.06) 0%, rgba(16, 185, 129, 0) 100%);
+  border-left: 4px solid var(--green);
 }
 
 .standingsTable tbody tr.thirdZone {
-  background: rgba(255, 209, 102, 0.12);
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.06) 0%, rgba(245, 158, 11, 0) 100%);
+  border-left: 4px solid var(--yellow);
 }
 
 .rankBadge {
   display: inline-grid;
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   margin-right: 8px;
   place-items: center;
   border-radius: 999px;
-  background: rgba(16, 32, 24, 0.08);
+  background: rgba(15, 29, 23, 0.06);
   color: var(--ink);
-  font-size: 0.72rem;
-  font-weight: 900;
-}
-
-.teamFlag {
-  margin-right: 7px;
-}
-
-.groupMarker {
-  display: block;
-  margin: 3px 0 0 30px;
-  color: var(--muted);
-  font-size: 0.68rem;
-  font-weight: 900;
-  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 800;
+  font-family: var(--font-outfit);
 }
 
 .directZone .rankBadge {
@@ -647,99 +793,162 @@ td:first-child {
 
 .thirdZone .rankBadge {
   background: var(--yellow);
+  color: var(--ink);
 }
 
-thead th {
-  background: #102018;
-  color: #fff;
+.teamFlag {
+  margin-right: 8px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
+.groupMarker {
+  display: block;
+  margin: 4px 0 0 32px;
+  color: var(--muted);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* ----------------------------------------------------
+   Matches List and Rows
+   ---------------------------------------------------- */
 .matchList {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 16px;
 }
 
 .matchList h3 {
   grid-column: 1 / -1;
-  margin: 0;
+  margin: 8px 0 0 0;
   color: var(--green-dark);
-  font-size: 0.82rem;
-  letter-spacing: 0.06em;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  font-family: var(--font-outfit);
+  font-weight: 800;
 }
 
 .matchRow {
-  display: grid;
-  gap: 10px;
-  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  transition: all 0.2s ease;
+}
+
+.matchRow:hover,
+.bracketMatch:hover {
+  border-color: rgba(16, 185, 129, 0.18);
+  box-shadow: 0 6px 16px rgba(15, 29, 23, 0.04);
 }
 
 .matchMeta {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  align-items: center;
   color: var(--muted);
   font-size: 0.75rem;
-  font-weight: 900;
+  font-weight: 700;
+  border-bottom: 1px dashed rgba(15, 29, 23, 0.06);
+  padding-bottom: 8px;
+}
+
+.matchMeta span {
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .matchMeta small {
   color: var(--blue);
-  text-align: right;
+  font-weight: 800;
 }
 
+/* ----------------------------------------------------
+   Scores Alignment (Score Line)
+   ---------------------------------------------------- */
 .scoreLine {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 38px 14px 38px minmax(0, 1fr);
-  gap: 7px;
+  grid-template-columns: minmax(0, 1fr) 42px 16px 42px minmax(0, 1fr);
+  gap: 8px;
   align-items: center;
-  font-size: 0.82rem;
-  font-weight: 900;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--ink);
 }
 
 .scoreLine span {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   align-items: center;
   min-width: 0;
-  overflow-wrap: anywhere;
 }
 
 .scoreLine span:first-child {
   justify-content: flex-end;
-}
-
-.scoreLine span:first-child {
   text-align: right;
 }
 
-.scoreLine input {
-  width: 38px;
-  height: 34px;
-  border: 1px solid rgba(16, 32, 24, 0.16);
-  border-radius: 10px;
-  background: #f4f8f4;
-  text-align: center;
-  font-weight: 900;
+.scoreLine span:last-child {
+  justify-content: flex-start;
+  text-align: left;
 }
 
+.scoreLine input,
+.knockoutScoreLine input {
+  width: 42px;
+  height: 38px;
+  border: 1.5px solid rgba(15, 29, 23, 0.12);
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--ink);
+  text-align: center;
+  font-weight: 800;
+  font-size: 1.05rem;
+  transition: all 0.2s ease;
+  font-family: var(--font-inter);
+}
+
+.scoreLine input:focus,
+.knockoutScoreLine input:focus {
+  border-color: var(--green);
+  background: hsl(156, 60%, 98%);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+  outline: none;
+}
+
+.scoreLine strong {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* ----------------------------------------------------
+   Knockout Bracket Page
+   ---------------------------------------------------- */
 .bracketList {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 16px;
 }
 
 .bracketMatch {
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
 }
 
 .bracketMeta {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  gap: 2px 10px;
-  padding: 12px 14px;
-  background: #102018;
+  gap: 2px 12px;
+  padding: 12px 16px;
+  background: #0f1d17;
   color: #fff;
 }
 
@@ -747,70 +956,66 @@ thead th {
   grid-row: span 2;
   align-self: center;
   border-radius: 10px;
-  padding: 6px 8px;
+  padding: 4px 8px;
   background: var(--yellow);
-  color: #132018;
-  font-size: 0.82rem;
-  font-weight: 900;
+  color: var(--ink);
+  font-size: 0.8rem;
+  font-weight: 850;
+  font-family: var(--font-outfit);
 }
 
 .bracketMeta span {
-  font-size: 0.78rem;
-  font-weight: 900;
+  font-size: 0.72rem;
+  font-weight: 800;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: var(--font-outfit);
 }
 
 .bracketMeta small {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.74rem;
-  font-weight: 800;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.7rem;
+  font-weight: 700;
 }
 
 .bracketMatch p {
   margin: 0;
-  padding: 11px 14px;
-  font-weight: 900;
+  padding: 12px 16px;
+  font-weight: 800;
+  color: var(--ink);
 }
 
 .bracketMatch p + p {
-  border-top: 1px solid rgba(16, 32, 24, 0.08);
+  border-top: 1px solid rgba(15, 29, 23, 0.06);
 }
 
 .bracketMatch em {
   display: block;
-  border-top: 1px solid rgba(16, 32, 24, 0.08);
-  padding: 8px 14px 12px;
+  border-top: 1px solid rgba(15, 29, 23, 0.06);
+  padding: 8px 16px 10px;
   color: var(--muted);
-  font-size: 0.74rem;
+  font-size: 0.7rem;
   font-style: normal;
-  font-weight: 800;
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
 
 .knockoutScoreLine {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 38px 14px 38px minmax(0, 1fr);
-  gap: 7px;
+  grid-template-columns: minmax(0, 1fr) 42px 16px 42px minmax(0, 1fr);
+  gap: 8px;
   align-items: center;
-  padding: 14px;
-}
-
-.knockoutScoreLine input {
-  width: 38px;
-  height: 34px;
-  border: 1px solid rgba(16, 32, 24, 0.16);
-  border-radius: 10px;
-  background: #f4f8f4;
-  text-align: center;
-  font-weight: 900;
+  padding: 16px;
+  color: var(--ink);
 }
 
 .teamSlot {
   display: flex;
-  gap: 7px;
+  gap: 8px;
   align-items: center;
   min-width: 0;
-  font-weight: 900;
-  overflow-wrap: anywhere;
+  font-weight: 800;
+  font-size: 0.9rem;
 }
 
 .teamSlot.alignRight {
@@ -818,18 +1023,27 @@ thead th {
   text-align: right;
 }
 
+/* ----------------------------------------------------
+   General Helpers & Typography
+   ---------------------------------------------------- */
 .finePrint {
-  margin: 16px 0 0;
+  margin: 20px 0 0;
   color: var(--muted);
-  font-size: 0.84rem;
-  font-weight: 800;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.5;
+  border-left: 3px solid rgba(15, 29, 23, 0.15);
+  padding-left: 12px;
 }
 
+/* ----------------------------------------------------
+   Bottom Tabs (Selectores de Páginas)
+   ---------------------------------------------------- */
 .pageTabs {
   display: flex;
   gap: 8px;
-  width: min(100%, 920px);
-  margin: 12px auto 0;
+  width: min(100%, 940px);
+  margin: 8px auto 0;
   padding: 8px 2px;
   overflow-x: auto;
   scrollbar-width: none;
@@ -842,44 +1056,59 @@ thead th {
 .pageTabs button {
   flex: 0 0 auto;
   min-width: 44px;
-  min-height: 36px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  min-height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 999px;
-  padding: 0 13px;
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.78);
-  font-weight: 900;
-  transition:
-    transform 160ms ease,
-    background 160ms ease,
-    color 160ms ease;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 800;
+  font-family: var(--font-outfit);
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
 }
 
 .pageTabs button:hover {
   transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .pageTabs .activeTab {
-  background: var(--green);
-  color: #fff;
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  color: #ffffff;
+  border-color: rgba(16, 185, 129, 0.2);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
 }
 
+/* ----------------------------------------------------
+   Footer Source Info
+   ---------------------------------------------------- */
 .sourceStrip {
-  display: grid;
-  gap: 6px;
-  width: min(100%, 920px);
-  margin: 0 auto 28px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: min(100%, 940px);
+  margin: 16px auto 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(247, 251, 245, 0.72);
-  font-size: 0.88rem;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  color: hsl(156, 16%, 70%);
+  font-size: 0.8rem;
+  line-height: 1.5;
 }
 
 .sourceStrip strong {
   color: var(--yellow);
+  font-family: var(--font-outfit);
+  font-size: 0.85rem;
+}
+
+.sourceStrip span {
+  display: block;
 }
 
 .srOnly {
@@ -891,139 +1120,208 @@ thead th {
   white-space: nowrap;
 }
 
+/* ----------------------------------------------------
+   Animations
+   ---------------------------------------------------- */
 @keyframes pageIn {
   from {
     opacity: 0;
-    transform: translateY(8px) scale(0.992);
+    transform: translateY(12px) scale(0.985);
   }
-
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
 }
 
+/* ----------------------------------------------------
+   Media Queries & Responsiveness
+   ---------------------------------------------------- */
 @media (max-width: 900px) {
   .appShell {
-    padding: 18px;
+    padding: 24px 16px;
+    gap: 24px;
   }
 
   .introBand {
     grid-template-columns: 1fr;
+    gap: 32px;
     min-height: auto;
   }
 
   .coverCard {
     justify-self: center;
-    width: min(100%, 360px);
+    width: min(100%, 380px);
   }
 
   .bookletNav {
-    grid-template-columns: 42px minmax(0, 1fr) 42px;
-    border-radius: 22px;
+    grid-template-columns: 80px minmax(0, 1fr) 42px 42px;
+    border-radius: 24px;
+    padding: 6px 12px;
   }
 
-  .bookletNav button:first-child {
-    grid-column: 1 / -1;
-    grid-row: 2;
+  .bookletNav button {
+    min-height: 34px;
   }
 
-  .pageCounter {
-    grid-column: 2;
+  .pageCounter span {
+    font-size: 0.95rem;
   }
 
   .bookletPage {
-    min-height: 610px;
-    border-radius: 22px;
+    min-height: auto; /* Fluid height on mobile/tablet */
+    border-radius: 20px;
   }
 
   .pageRibbon {
     position: static;
     display: inline-flex;
-    margin: 20px 20px 0;
+    margin: 24px 24px 0;
   }
 
   .pageInner {
-    padding: 18px 20px 24px;
+    padding: 24px;
   }
 
   .pageHeader {
     padding-right: 0;
+    margin-bottom: 20px;
   }
 
   .teamList {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
   }
 
   .matchList,
   .bracketList {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 }
 
 @media (max-width: 560px) {
+  .appShell {
+    padding: 16px 12px;
+  }
+
   .bookletClosed .introBand {
     min-height: auto;
-    padding-block: 18px;
+    padding-block: 24px;
   }
 
   .introCopy h1,
   .bookletClosed .introCopy h1 {
-    font-size: 3.1rem;
+    font-size: 2.2rem;
   }
 
   .coverFace {
-    min-height: 440px;
+    min-height: 420px;
     border-radius: 24px;
     padding: 24px;
+    gap: 20px;
+  }
+
+  .coverFace h2 {
+    font-size: 1.8rem;
   }
 
   .coverStats {
     grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .coverStats div {
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .coverStats dd {
+    margin: 0;
+    font-size: 1.2rem;
   }
 
   .insideCover {
-    min-height: 500px;
+    min-height: auto;
+    gap: 20px;
+  }
+
+  .insideCover h2 {
+    font-size: 1.8rem;
   }
 
   .insideCover dl {
     grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .insideCover dl div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+  }
+
+  .insideCover dd {
+    margin: 0;
+    font-size: 1.4rem;
   }
 
   .teamList {
     grid-template-columns: 1fr;
+    gap: 8px;
   }
-
-  .scoreLine {
-    grid-template-columns: minmax(0, 1fr) 34px 12px 34px minmax(0, 1fr);
-    font-size: 0.76rem;
-  }
-
-  .knockoutScoreLine {
-    grid-template-columns: minmax(0, 1fr) 34px 12px 34px minmax(0, 1fr);
+  
+  .teamList li {
     padding: 12px;
-    font-size: 0.76rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .teamList span {
+    order: 2;
+  }
+
+  .scoreLine,
+  .knockoutScoreLine {
+    grid-template-columns: minmax(0, 1fr) 38px 12px 38px minmax(0, 1fr);
+    font-size: 0.8rem;
   }
 
   .scoreLine input,
   .knockoutScoreLine input {
-    width: 34px;
+    width: 38px;
+    height: 34px;
+    border-radius: 8px;
+    font-size: 0.95rem;
   }
 
   table {
-    font-size: 0.72rem;
+    font-size: 0.78rem;
   }
 
   th,
   td {
-    padding: 8px 4px;
+    padding: 10px 6px;
+  }
+
+  th:first-child,
+  td:first-child {
+    padding-left: 8px;
   }
 
   .rankBadge {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     margin-right: 4px;
-    font-size: 0.62rem;
+    font-size: 0.68rem;
+  }
+
+  .groupMarker {
+    margin-left: 24px;
   }
 }
 
