@@ -5,28 +5,28 @@
   /* Deep Pitch Dark Theme Colors */
   --bg-raw: 156, 45%, 4%;
   --bg: hsl(var(--bg-raw));
-  --bg-2: #050d0a;
+  --bg-2: #040c09;
   --bg-3: #081510;
   
-  /* Text and Surfaces - Dark Glass Style */
+  /* Text and Surfaces - High Contrast Dark Theme */
   --ink: #ffffff;
-  --muted: #859c90;
-  --surface: rgba(8, 21, 16, 0.88); /* Translucent dark emerald glass */
-  --surface-2: rgba(255, 255, 255, 0.03); /* Subtle card background */
-  --surface-hover: rgba(255, 255, 255, 0.06);
-  --line: rgba(255, 255, 255, 0.08);
+  --muted: #a2b7ad; /* Brighter, high-contrast sage/slate text */
+  --surface: #091512; /* Solid dark forest green to completely prevent background gradients bleeding through */
+  --surface-2: rgba(255, 255, 255, 0.04); /* Defined card background */
+  --surface-hover: rgba(255, 255, 255, 0.08);
+  --line: rgba(255, 255, 255, 0.12); /* Brighter borders for crisp separation */
   
   /* Vibrant accents */
   --green: #10b981; /* Emerald 500 */
-  --green-dark: #047857; /* Emerald 700 */
+  --green-dark: #059669; /* Emerald 600 */
   --blue: #3b82f6; /* Blue 500 */
   --yellow: #f59e0b; /* Amber 500 */
   --red: #ef4444; /* Red 500 */
   
   --shadow-lg: 
-    0 30px 60px -15px rgba(0, 0, 0, 0.6),
-    0 0 50px rgba(16, 185, 129, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 25px 50px -12px rgba(0, 0, 0, 0.65),
+    0 0 50px rgba(16, 185, 129, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 * {
@@ -46,9 +46,9 @@ body {
   font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
   background-color: var(--bg);
   background-image:
-    radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.16) 0%, transparent 45%),
-    radial-gradient(circle at 90% 10%, rgba(59, 130, 246, 0.12) 0%, transparent 40%),
-    radial-gradient(circle at 50% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 55%),
+    radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.14) 0%, transparent 45%),
+    radial-gradient(circle at 90% 10%, rgba(59, 130, 246, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(245, 158, 11, 0.04) 0%, transparent 55%),
     linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
@@ -305,22 +305,23 @@ input:focus-visible {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 20px;
   padding: 10px 20px;
-  background: rgba(8, 21, 16, 0.7);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background: rgba(12, 28, 22, 0.85); /* Slightly lighter, more defined dark glass */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
 
+/* Redesigned Close Button - Highly Visible Red Gradient */
 .navCloseBtn {
   flex: 0 0 110px;
   min-height: 38px;
-  border: 1px solid rgba(239, 68, 68, 0.2);
+  border: none;
   border-radius: 12px;
-  background: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  color: #ffffff;
   font-weight: 800;
   font-family: var(--font-outfit);
   font-size: 0.85rem;
@@ -328,13 +329,13 @@ input:focus-visible {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 }
 
 .navCloseBtn:hover {
-  background: #ef4444;
-  color: #ffffff;
-  box-shadow: 0 0 15px rgba(239, 68, 68, 0.35);
+  background: linear-gradient(135deg, #f87171, #dc2626);
+  box-shadow: 0 6px 18px rgba(239, 68, 68, 0.45);
   transform: translateY(-1px);
 }
 
@@ -356,12 +357,13 @@ input:focus-visible {
   min-width: 0;
 }
 
+/* Highly visible arrow buttons */
 .navArrowBtn {
   width: 38px;
   height: 38px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.08); /* Brighter base */
   color: #ffffff;
   display: inline-flex;
   align-items: center;
@@ -370,10 +372,11 @@ input:focus-visible {
 }
 
 .navArrowBtn:hover {
-  background: #ffffff;
-  color: var(--bg-3);
+  background: var(--green);
+  border-color: var(--green);
+  color: #000000;
   transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
 }
 
 .navArrowBtn:active {
@@ -392,17 +395,18 @@ input:focus-visible {
   font-family: var(--font-outfit);
   font-size: 1.25rem;
   letter-spacing: -0.01em;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .pageDivider {
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.35);
   font-size: 1.1rem;
 }
 
 .pageNumbers {
   font-size: 0.85rem;
-  color: var(--muted);
-  font-weight: 700;
+  color: #a7f3d0; /* High contrast numbers */
+  font-weight: 800;
 }
 
 .navRightPlaceholder {
@@ -416,7 +420,7 @@ input:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  perspective: 1800px; /* 3D Perspective context */
+  perspective: 1800px;
   transform-style: preserve-3d;
 }
 
@@ -434,13 +438,11 @@ input:focus-visible {
   width: min(100%, 940px);
   min-height: 520px;
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(16, 185, 129, 0.2); /* Defined border */
   border-radius: 24px;
-  background: var(--surface);
+  background: var(--surface); /* Solid deep dark backing */
   color: var(--ink);
   box-shadow: var(--shadow-lg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   
   /* 3D Flip Entry Animation */
   transform-origin: left center;
@@ -477,7 +479,7 @@ input:focus-visible {
   top: -50px;
   width: 160px;
   height: 160px;
-  border: 20px solid rgba(16, 185, 129, 0.03);
+  border: 20px solid rgba(16, 185, 129, 0.05);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -489,9 +491,9 @@ input:focus-visible {
   z-index: 2;
   border-radius: 999px;
   padding: 6px 14px;
-  background: var(--surface-2);
+  background: rgba(255, 255, 255, 0.08);
   border: 1px solid var(--line);
-  color: #fff;
+  color: #ffffff;
   font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -518,8 +520,8 @@ input:focus-visible {
   width: fit-content;
   border-radius: 999px;
   padding: 5px 12px;
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.25);
   color: var(--green);
   font-size: 0.72rem;
   font-weight: 800;
@@ -541,7 +543,7 @@ input:focus-visible {
 .insideDesc {
   max-width: 580px;
   margin: 0;
-  color: var(--muted);
+  color: #e2e8f0; /* Crisp color for readability */
   font-size: 1.05rem;
   line-height: 1.55;
 }
@@ -562,15 +564,15 @@ input:focus-visible {
   padding: 20px;
   border: 1px solid var(--line);
   border-radius: 16px;
-  background: var(--surface-2);
+  background: rgba(255, 255, 255, 0.04);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .statCard:hover {
   transform: translateY(-2px);
-  background: var(--surface-hover);
-  border-color: rgba(16, 185, 129, 0.25);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
 
 .statIcon {
@@ -579,7 +581,7 @@ input:focus-visible {
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .statIcon.groups { color: var(--green); }
@@ -631,7 +633,7 @@ input:focus-visible {
   font-weight: 900;
   font-family: var(--font-outfit);
   font-size: 1.15rem;
-  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.35);
 }
 
 .pageHeader h2 {
@@ -663,24 +665,24 @@ input:focus-visible {
   padding: 16px;
   border: 1px solid var(--line);
   border-radius: 16px;
-  background: var(--surface-2);
+  background: rgba(255, 255, 255, 0.03);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .teamList li:hover {
   transform: translateY(-2px);
-  background: var(--surface-hover);
-  border-color: rgba(16, 185, 129, 0.2);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(16, 185, 129, 0.25);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
 .posBadge {
   width: fit-content;
   border-radius: 999px;
   padding: 3px 8px;
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  color: var(--blue);
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa; /* Crisp light blue */
   font-size: 0.65rem;
   font-weight: 900;
   font-family: var(--font-outfit);
@@ -703,7 +705,7 @@ input:focus-visible {
 }
 
 .qualNote {
-  color: var(--muted);
+  color: #94a3b8; /* Crisp grey */
   font-size: 0.65rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -711,14 +713,14 @@ input:focus-visible {
 }
 
 /* ----------------------------------------------------
-   Tables Styling
+   Tables Styling - Maximum Readability
    ---------------------------------------------------- */
 .tableWrap {
   overflow-x: auto;
   margin: 0 0 24px;
   border-radius: 16px;
   border: 1px solid var(--line);
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.25); /* Darker panel background */
 }
 
 table {
@@ -729,7 +731,7 @@ table {
 
 caption {
   margin-bottom: 8px;
-  color: var(--muted);
+  color: #94a3b8;
   font-weight: 850;
   text-align: left;
   text-transform: uppercase;
@@ -741,9 +743,10 @@ caption {
 
 th,
 td {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   padding: 12px 10px;
   text-align: center;
+  color: #e2e8f0; /* Clean readable grey-white for cell text */
 }
 
 .teamRowHeader {
@@ -759,10 +762,11 @@ td:first-child {
 }
 
 thead th {
-  background: rgba(0, 0, 0, 0.25);
-  color: #a7f3d0; /* Soft emerald for table headers */
+  background: rgba(16, 185, 129, 0.1); /* Green-emerald tinted header */
+  color: #34d399; /* Bright emerald text */
+  border-bottom: 2px solid rgba(16, 185, 129, 0.2);
   font-family: var(--font-outfit);
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
   font-size: 0.75rem;
   letter-spacing: 0.05em;
@@ -781,14 +785,14 @@ thead th {
   background: var(--surface-hover);
 }
 
-/* Zones of Table (Green for direct, Yellow for best 3rd) */
+/* Zone Highlights with rich gradients */
 .standingsTable tbody tr.directZone {
-  background: linear-gradient(90deg, rgba(16, 185, 129, 0.08) 0%, rgba(16, 185, 129, 0) 100%);
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.12) 0%, rgba(16, 185, 129, 0) 100%);
   border-left: 3px solid var(--green);
 }
 
 .standingsTable tbody tr.thirdZone {
-  background: linear-gradient(90deg, rgba(245, 158, 11, 0.08) 0%, rgba(245, 158, 11, 0) 100%);
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.12) 0%, rgba(245, 158, 11, 0) 100%);
   border-left: 3px solid var(--yellow);
 }
 
@@ -798,7 +802,7 @@ thead th {
   height: 22px;
   place-items: center;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.1);
   color: #ffffff;
   font-size: 0.75rem;
   font-weight: 800;
@@ -808,13 +812,13 @@ thead th {
 
 .directZone .rankBadge {
   background: var(--green);
-  color: #fff;
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+  color: #000000;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
 }
 
 .thirdZone .rankBadge {
   background: var(--yellow);
-  color: #000;
+  color: #000000;
 }
 
 .teamNameLabel {
@@ -830,7 +834,7 @@ thead th {
 
 .groupMarker {
   margin: 0;
-  color: var(--muted);
+  color: #94a3b8;
   font-size: 0.62rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -844,7 +848,7 @@ thead th {
 
 .statGd {
   font-weight: 700;
-  color: #e2e8f0;
+  color: #ffffff;
 }
 
 /* ----------------------------------------------------
@@ -858,7 +862,7 @@ thead th {
 
 .matchList h3 {
   margin: 4px 0;
-  color: #a7f3d0;
+  color: #34d399; /* Bright emerald */
   font-size: 0.82rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -881,15 +885,15 @@ thead th {
   padding: 16px;
   border: 1px solid var(--line);
   border-radius: 16px;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(12, 24, 20, 0.65); /* Rich background */
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .matchRow:hover,
 .bracketMatch:hover {
-  border-color: rgba(16, 185, 129, 0.25);
-  background: rgba(0, 0, 0, 0.35);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border-color: rgba(16, 185, 129, 0.3);
+  background: rgba(16, 32, 26, 0.7);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
   transform: translateY(-1px);
 }
 
@@ -911,11 +915,11 @@ thead th {
 }
 
 .matchDate {
-  color: var(--blue);
+  color: #38bdf8; /* Bright sky blue for maximum visibility */
   font-weight: 800;
 }
 
-/* Perfect Symmetrical Score Line Alignment */
+/* Symmetrical Score Line Alignment */
 .scoreLine,
 .knockoutScoreLine {
   display: flex;
@@ -962,9 +966,9 @@ thead th {
 .scoreInputWrapper input {
   width: 44px;
   height: 38px;
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.2); /* Defined border */
   border-radius: 10px;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.55);
   color: #ffffff;
   text-align: center;
   font-weight: 800;
@@ -975,13 +979,13 @@ thead th {
 
 .scoreInputWrapper input:focus {
   border-color: var(--green);
-  background: rgba(16, 185, 129, 0.12);
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+  background: rgba(16, 185, 129, 0.15);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.35);
   outline: none;
 }
 
 .vsDivider {
-  color: rgba(255, 255, 255, 0.3);
+  color: #94a3b8; /* Lighter divider for contrast */
   font-size: 0.8rem;
   font-weight: 500;
   padding-inline: 2px;
@@ -989,8 +993,8 @@ thead th {
 
 /* Styled Placeholder Badges */
 .isPlaceholderSlot .placeholderLabel {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px dashed rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px dashed rgba(255, 255, 255, 0.25);
   color: var(--muted);
   font-size: 0.72rem;
   font-weight: 800;
@@ -1009,7 +1013,7 @@ thead th {
   padding: 12px 16px;
   background: rgba(0, 0, 0, 0.35);
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .matchNumber {
@@ -1022,13 +1026,13 @@ thead th {
   font-size: 0.78rem;
   font-weight: 850;
   font-family: var(--font-outfit);
-  box-shadow: 0 2px 6px rgba(245, 158, 11, 0.2);
+  box-shadow: 0 2px 6px rgba(245, 158, 11, 0.25);
 }
 
 .pathHint {
-  border-top: 1px dashed rgba(255, 255, 255, 0.06);
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
   padding: 10px 4px 0;
-  color: var(--muted);
+  color: #34d399; /* Bright emerald hint */
   font-size: 0.7rem;
   font-style: normal;
   font-weight: 700;
@@ -1038,16 +1042,16 @@ thead th {
 
 .finePrint {
   margin: 20px 0 0;
-  color: var(--muted);
+  color: #94a3b8;
   font-size: 0.78rem;
   font-weight: 700;
   line-height: 1.5;
-  border-left: 2px solid rgba(16, 185, 129, 0.3);
+  border-left: 2px solid rgba(16, 185, 129, 0.4);
   padding-left: 12px;
 }
 
 /* ----------------------------------------------------
-   Bottom Page Tabs (Ultra-thin Custom Scroll)
+   Bottom Page Tabs - Redesigned for Maximum Contrast
    ---------------------------------------------------- */
 .pageTabs {
   display: flex;
@@ -1057,7 +1061,7 @@ thead th {
   padding: 8px 2px 12px;
   overflow-x: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
 }
 
 .pageTabs::-webkit-scrollbar {
@@ -1069,41 +1073,41 @@ thead th {
 }
 
 .pageTabs::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.2); /* Brighter scroll handle */
   border-radius: 99px;
 }
 
 .pageTabs::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.35);
 }
 
+/* High-contrast tab buttons */
 .pageTabs button {
   flex: 0 0 auto;
   min-width: 42px;
   min-height: 34px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.18); /* Solid visible border */
   border-radius: 999px;
   padding: 0 14px;
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.08); /* Semi-solid background */
+  color: #ffffff; /* Crisp white text */
   font-weight: 800;
   font-family: var(--font-outfit);
   font-size: 0.85rem;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .pageTabs button:hover {
   transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .pageTabs .activeTab {
   background: linear-gradient(135deg, var(--green), var(--green-dark));
   color: #ffffff;
-  border-color: rgba(16, 185, 129, 0.2);
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+  border-color: var(--green);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.45);
 }
 
 /* ----------------------------------------------------
@@ -1144,7 +1148,7 @@ thead th {
 
 .fineNote {
   font-size: 0.72rem;
-  opacity: 0.75;
+  opacity: 0.85;
 }
 
 .srOnly {
@@ -1197,7 +1201,7 @@ thead th {
   }
 
   .bookletPage {
-    min-height: auto; /* Fully responsive fluid height */
+    min-height: auto;
     border-radius: 20px;
   }
 
